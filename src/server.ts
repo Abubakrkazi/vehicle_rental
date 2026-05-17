@@ -8,6 +8,13 @@ import autoReturnBookings from "./utils/autoReturn";
 const PORT = process.env.PORT || 5000;
 
 /**
+ * ROOT ROUTE
+ */
+app.get("/", (req, res) => {
+  res.send("Vehicle Rental API is running 🚀");
+});
+
+/**
  * TEST DB CONNECTION
  */
 app.get("/test-db", async (req, res) => {
@@ -22,14 +29,12 @@ app.get("/test-db", async (req, res) => {
  * START SERVER
  */
 app.listen(PORT, () => {
-  console.log(` Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 
   // 🔥 Auto return scheduler
   setInterval(() => {
     autoReturnBookings();
   }, 60 * 1000);
 });
-
-
 
 export default app;
